@@ -1,13 +1,11 @@
 public class DynamicStack {
     private int top =-1;
     private int arr1[]=new int[4];
-    private int arr2[]=new int[arr1.length+1];
+
 
     public void push(int val) {
-        if (top == arr1.length - 1) {
-            System.out.println("Stack is full");
-        }
-        else if (top>= arr1.length) {
+       if (top>= arr1.length) {
+            int arr2[]=new int[arr1.length+1];
             arr1 =arr2;
             arr1[++top] = val;
         }
@@ -25,10 +23,33 @@ public class DynamicStack {
         --top;
         return v;
     }
+
     public void printStack() {
         for (int i = 0; i <= top; i++) {
             System.out.print(arr1[i]);
         }
+    }
+    public int peek() {
+        return arr1[top];
+    }
+
+    public String searchStack(int val) {
+        for (int i = 0; i <= top; i++) {
+            if (arr1[i] == val) {
+                return "Value found.";
+            }
+        }
+        return "Value not found";
+    }
+
+    public int elementFreq(int val){
+        int count=0;
+        for (int i = 0; i <= top; i++) {
+            if (arr1[i] == val) {
+                count++;
+            }
+        }
+        return count;
     }
 
 }

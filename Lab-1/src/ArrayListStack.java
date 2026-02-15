@@ -1,36 +1,43 @@
 import java.util.ArrayList;
 
 public class ArrayListStack {
-    private int top=-1;
-    private ArrayList<Integer> arrList= new ArrayList<>(4);
+    ArrayList<Integer> arrList= new ArrayList<>();
+
+    ArrayListStack(){
+    }
 
     public void push (int val){
             arrList.add(val);
-            top++;
     }
 
     public int pop(){
-        if (top == -1) {
+        if (arrList.isEmpty()) {
             System.out.println("Stack is empty.");
-            return 0;
+            return -1;
         }
-        int v= arrList.get(top);
-        --top;
-        return v;
+        return arrList.remove(arrList.size() - 1);
     }
     public void printStack(){
-        for(int i=0; i<=top; i++){
+        if (arrList.isEmpty()) {
+            System.out.println("Stack is empty.");
+        }else{
+        for(int i=0; i<= arrList.size()-1; i++){
             System.out.print(arrList.get(i));
+        }
         }
     }
 
     public int peek(){
-        return arrList.get(top);
-    }
+        if (arrList.isEmpty()){
+            System.out.println("Stack is empty");
+            return -1;
+        }else{
+        return arrList.get(arrList.size()-1);
+    }}
 
     public String searchStack(int val) {
-        for (int i = 0; i <= top; i++) {
-            if (arrList.get(i) == val) {
+        for (int i = 0; i <= arrList.size()-1; i++) {
+            if (val == arrList.get(i)) {
                 return "Value found.";
             }
         }
@@ -39,7 +46,7 @@ public class ArrayListStack {
 
     public int elementFreq(int val){
         int count=0;
-        for (int i = 0; i <= top; i++) {
+        for (int i = 0; i <= arrList.size()-1; i++) {
             if (arrList.get(i) == val) {
                 count++;
             }
