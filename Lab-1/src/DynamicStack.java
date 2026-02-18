@@ -4,37 +4,44 @@ public class DynamicStack {
 
 
     public void push(int val) {
-       if (top>= arr1.length) {
-            int arr2[]=new int[arr1.length+1];
-            arr1 =arr2;
-            arr1[++top] = val;
-        }
-        else {
-            arr1[++top] = val;
-        }
+       if (top == arr1.length-1) {
+           int arr2[] = new int[arr1.length * 2];
+           for (int i = 0; i < arr1.length; i++) {
+               arr2[i] = arr1[i];
+           }
+           arr1 = arr2;
+           System.out.println("Stack full. Resizing to " + arr2.length);
+       }
+       arr1[++top]=val;
     }
 
     public int pop() {
         if (top == -1) {
             System.out.println("Stack is empty.");
-            return 0;
+            return -1;
         }
-        int v = arr1[top];
-        --top;
-        return v;
+        return arr1[top--];
     }
 
     public void printStack() {
-        for (int i = 0; i <= top; i++) {
+        if(top == -1) {
+            System.out.println("Stack is empty.");
+            return;
+        }
+        for (int i = top; i >= 0; i--) {
             System.out.print(arr1[i]);
         }
     }
     public int peek() {
+        if(top == -1) {
+            System.out.println("Stack is empty.");
+            return -1;
+        }
         return arr1[top];
-    }
+}
 
     public String searchStack(int val) {
-        for (int i = 0; i <= top; i++) {
+        for (int i = top; i >= 0; i--) {
             if (arr1[i] == val) {
                 return "Value found.";
             }
@@ -44,7 +51,7 @@ public class DynamicStack {
 
     public int elementFreq(int val){
         int count=0;
-        for (int i = 0; i <= top; i++) {
+        for(int i = top; i >=0; i--) {
             if (arr1[i] == val) {
                 count++;
             }
