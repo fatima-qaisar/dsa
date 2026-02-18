@@ -25,7 +25,11 @@ public class ArrayStack {
     }
 
     public void printStack() {
-        for (int i = 0; i <= top; i++) {
+        if(top == -1){
+            System.out.println("Stack is empty.");
+            return;
+        }
+        for (int i = top; i >= 0; i--) {
             System.out.print(arr[i]);
         }
     }
@@ -38,7 +42,7 @@ public class ArrayStack {
     }
 
     public String searchStack(int val) {
-        for (int i = 0; i <= top; i++) {
+        for (int i = top; i >= 0; i--) {
             if (val == arr[i]) {
                 return "Value found.";
             }
@@ -48,7 +52,7 @@ public class ArrayStack {
 
     public int elementFreq(int val){
         int count=0;
-        for (int i = 0; i <= top; i++) {
+        for (int i = top; i >= 0; i--) {
             if (arr[i] == val) {
                 count++;
             }
