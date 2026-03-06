@@ -34,29 +34,9 @@ public class CharStack {
 
     public char peek() {
         if (top == -1) {
-            System.out.println("Stack is empty.");
-            return ' ';
+            throw new RuntimeException("Stack is empty");
         }
         return arrList.get(top);
-    }
-
-    public String searchStack(char val) {
-        for (int i = top; i >= 0; i--) {
-            if (val == arrList.get(i)) {
-                return "Value found.";
-            }
-        }
-        return "Value not found";
-    }
-
-    public int elementFreq(char val) {
-        int count = 0;
-        for (int i = top; i >= 0; i--) {
-            if (arrList.get(i) == val) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public  boolean isEmpty(){

@@ -1,6 +1,4 @@
 public class InfixToPostfix {
-    private CharStack st = new CharStack();
-    private StringBuilder output = new StringBuilder();
 
     InfixToPostfix() {
     }
@@ -23,7 +21,9 @@ public class InfixToPostfix {
         return true;
     }
 
-    public StringBuilder convertToPostfix(String infixExp) {
+    public String convertToPostfix(String infixExp) {
+        CharStack st = new CharStack();
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < infixExp.length(); i++) {
             char c = infixExp.charAt(i);
             if (Character.isDigit(c) || Character.isLetter(c)) {
@@ -42,6 +42,8 @@ public class InfixToPostfix {
                         st.pop();
                     }
                     st.pop();
+                }else {
+                    throw new RuntimeException("Invalid character: " + c);
                 }
             }
         }
@@ -49,6 +51,6 @@ public class InfixToPostfix {
             output.append(st.peek());
             st.pop();
         }
-        return output;
+        return output.toString();
     }
 }
